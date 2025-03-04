@@ -1,0 +1,51 @@
+services:
+  database:
+    image: postgres:13
+    container_name: login_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - ${BD_HOST_PORT}:${BD_CONTAINER_PORT}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - login-network
+
+  backend:
+    container_name: login_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        DOCKERFILE_PORT: ${BACKEND_CONTAINER_PORT}
+    ports:
+      - ${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}
+    environment:
+      DOCKERFILE_PORT: ${BACKEND_CONTAINER_PORT}
+      SERVER_HOST: ${BACKEND_HOST}
+      SERVER_PORT: ${BACKEND_CONTAINER_PORT}
+      DB_HOST: database
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${BD_CONTAINER_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: always
+    networks:
+      - login-network 
+
+volumes:
+  db_data:
+
+networks:
+  login-network:
