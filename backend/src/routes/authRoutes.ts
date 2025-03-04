@@ -1,9 +1,10 @@
 import { Request, Response, Router } from "express";
+import RegisterController from "../controllers/auth/Register.controller";
 
 const authRoutes = Router();
 
-authRoutes.post("/register", (req: Request, res: Response) => {
-    res.status(201).send("resgister");
+authRoutes.post("/register", async (req: Request, res: Response) => {
+    return await new RegisterController().handle(req, res);
 });
 
 authRoutes.post("/login", (req: Request, res: Response) => {

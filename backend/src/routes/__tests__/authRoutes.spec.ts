@@ -1,5 +1,5 @@
 import request from "supertest";
-import { server } from "@src/server";
+import { server } from "../../server";
 
 describe("Teste de integridade da rota /auth/**", () => {
     it("Deve retornar 201 no status code a rota /auth/register", async () => {
