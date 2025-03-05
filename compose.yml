@@ -20,6 +20,7 @@ services:
       - wellgen-network
 
   backend:
+    image: backend:1.0.0
     container_name: wellgen_backend
     build:
       context: ./backend

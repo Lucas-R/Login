@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import FindController from "../controllers/user/Find.controller";
 import DeleteController from "../controllers/user/Delete.controller";
 import FindOneController from "../controllers/user/FindOne.controller";
+import UpdateController from "../controllers/user/Update.controller";
 
 const userRoutes = Router();
 
@@ -11,6 +12,10 @@ userRoutes.get("/", async (req: Request, res: Response) => {
 
 userRoutes.get("/:id", async (req: Request, res: Response) => {
     return await new FindOneController().handle(req, res);
+});
+
+userRoutes.put("/:id", async (req: Request, res: Response) => {
+    return await new UpdateController().handle(req, res);
 });
 
 userRoutes.delete("/:id", async (req: Request, res: Response) => {

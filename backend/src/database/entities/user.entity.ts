@@ -15,42 +15,44 @@ export class UserEntity implements UserProps{
     @Column()
     login_id!: string;
 
-    @Column({ length: 100, nullable: false })
+    @Column()
     name!: string;
 
-    @Column({ length: 100, nullable: false, unique: true })
+    @Column()
     email!: string;
 
-    @Column({ length: 255, nullable: false })
+    @Column()
     password!: string;
 
-    @Column({ length: 14, nullable: true, unique: true, default: null })
+    @Column({ default: null })
     doc?: string;
 
-    @Column({ type: "date", nullable: true, default: null })
-    birth?: Date;
+    @Column({ default: null })
+    birth?: number;
 
-    @Column({ length: 15, nullable: true, default: null })
+    @Column({ default: null })
+    death?: number;
+
+    @Column({ default: null })
     phone?: string;
 
-    @Column({ length: 100, nullable: true, default: null })
+    @Column({ default: null })
     address?: string;
 
-    @Column({ length: 100, nullable: true, default: null })
+    @Column({ default: null })
     city?: string;
 
-    @Column({ length: 2, nullable: true, default: null })
+    @Column({ default: null })
     state?: string;
 
-    @Column({ length: 9, nullable: true, default: null })
+    @Column({ default: null })
     zipcode?: string;
 
-    @Column({ length: 50, nullable: true, default: null })
+    @Column({ default: null })
     country?: string;
 
     @Column({
         type: "varchar",
-        nullable: true,
         default: null
     })
     gender?: "male" | "female" | null;
@@ -58,12 +60,11 @@ export class UserEntity implements UserProps{
     @Column({ default: true })
     active!: boolean;
 
-    @Column({ length: 255, nullable: true, default: null })
+    @Column({ default: null })
     avatar?: string;
 
     @Column({
         type: "varchar",
-        length: 50,
         default: "normal",
     })
     account!: "normal" | "premium";
