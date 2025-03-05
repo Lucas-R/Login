@@ -9,7 +9,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "migrate": "npx typeorm migration:run -d ./dist/database/config/config.js"
+    "migrate": "npx typeorm migration:run -d ./dist/database/config/config.js",
+    "migrate:revert": "npx typeorm migration:revert -d ./dist/database/config/config.js"
   },
   "keywords": [],
   "author": "",
