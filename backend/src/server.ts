@@ -5,6 +5,7 @@ import { connectionDB } from "./database/config/config";
 
 import initialRoutes from "./routes/initialRoutes";
 import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 
 export function server() {
     const HOST = process.env.SERVER_HOST! || "0.0.0.0";
@@ -16,6 +17,7 @@ export function server() {
     
     app.use("/", initialRoutes);
     app.use("/auth", authRoutes);
+    app.use("/user", userRoutes);
     
     return app.listen(PORT, HOST, () => console.log("server is running..."));
 }
