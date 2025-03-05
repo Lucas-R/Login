@@ -1,6 +1,7 @@
 import { UserProps } from "../../schemas/user";
 import clerkClientApp from "../../utils/cleckClient";
 import { userRepository } from "../../database/repositories/user.repository";
+import { hashPassword } from "../../utils/password";
 
 class RegisterService {
     async execute(data: UserProps) {
@@ -11,6 +12,7 @@ class RegisterService {
 
         const newUser = userRepository.create({
             ...data,
+            password: await hashPassword(data.password),
             login_id: clerkUser.id
         });
         const user = await userRepository.save(newUser);
