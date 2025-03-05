@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 ARG DOCKERFILE_PORT
 
-WORKDIR /app
+WORKDIR /backend
 
 COPY package*.json ./
 
