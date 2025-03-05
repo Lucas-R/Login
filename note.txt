@@ -1,0 +1,22 @@
+user = {
+    name: "",               //z.string().max(100),
+    email: "",              //z.string().email().max(100),
+    password: "",           //z.string().max(255),
+
+    login_id: "",           //z.string(), //GERADO PELO PRÓPRIO CLERK
+    id: "",                 //z.string().uuid(),
+    doc: "",                //z.string().max(14).nullable().optional(),
+    birth: "",              //z.date().nullable().optional(),
+    phone: "",              //z.string().max(15).nullable().optional(),
+    address: "",            //z.string().max(100).nullable().optional(),
+    city: "",               //z.string().max(100).nullable().optional(),
+    state: "",              //z.string().max(100).nullable().optional(),
+    zipcode: "",            //z.string().max(8).nullable().optional(),
+    country: "",            //z.string().max(50).nullable().optional(),
+    gender:                 "male", //genderSchema,
+    active:                 true, //z.boolean().default(true),
+    avatar: "",             //z.string().max(255).nullable().optional(),
+    account: "normal",      //accountSchema.default("normal"),
+    created_at: "",         //z.date().default(new Date()),
+    updated_at: "",         //z.date().default(new Date())
+}
