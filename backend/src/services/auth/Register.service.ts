@@ -6,7 +6,7 @@ class RegisterService {
     async execute(data: UserProps) {
         const clerkUser = await clerkClientApp.users.createUser({
             emailAddress: [data.email],
-            password: data.password,
+            password: data.password
         });
 
         const newUser = userRepository.create({
